@@ -1,1 +1,22 @@
-<p>reading-plan works!</p>
+<div class="page-header">
+    <h1>Okuma Planım</h1>
+  </div>
+  
+  <div *ngIf="readingPlan.length > 0; else noPlan">
+    <div class="book-list">
+      <div class="card" *ngFor="let plan of readingPlan">
+        <h3>{{ plan.book.name }}</h3>
+        <p>{{ plan.book.author }}</p>
+        <div class="schedule">
+          <p><strong>Başlangıç:</strong> </p>
+          <p><strong>Bitiş:</strong> </p>
+        </div>
+        <button>Plandan Çıkar</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noPlan>
+    <p class="no-data">Henüz bir okuma planı oluşturulmamış.</p>
+  </ng-template>
+  

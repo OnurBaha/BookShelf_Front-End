@@ -1,1 +1,24 @@
-<p>add-book works!</p>
+<div class="form-container">
+    <h2>Kitap Ekle / Güncelle</h2>
+    <form >
+      <label for="name">Kitap Adı</label>
+      <input type="text" id="name" name="name"  required />
+  
+      <label for="author">Yazar</label>
+      <input type="text" id="author" name="author" required />
+  
+      <label for="category">Kategori</label>
+      <select id="category" name="category" required>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+  
+      <label for="rating">Puan</label>
+      <input type="number" id="rating" name="rating"  min="1" max="5" />
+  
+      <label for="description">Açıklama</label>
+      <textarea id="description" name="description" ></textarea>
+  
+      <button type="submit">Kaydet</button>
+    </form>
+  </div>
+  

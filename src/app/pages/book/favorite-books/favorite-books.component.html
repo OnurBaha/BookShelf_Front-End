@@ -1,1 +1,19 @@
-<p>favorite-books works!</p>
+<div class="page-header">
+    <h1>Favori Kitaplarım</h1>
+  </div>
+  
+  <div *ngIf="favorites.length > 0; else noFavorites">
+    <div class="book-list">
+      <div class="card" *ngFor="let book of favorites">
+        <h3>{{ book.name }}</h3>
+        <p>{{ book.author }}</p>
+        <div class="rating">Puan: {{ book.rating }}</div>
+        <button >Favorilerden Çıkar</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noFavorites>
+    <p class="no-data">Henüz favori eklenmemiş.</p>
+  </ng-template>
+  

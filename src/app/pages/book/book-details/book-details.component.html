@@ -1,1 +1,17 @@
-<p>book-details works!</p>
+<div class="details-container" *ngIf="book; else loading">
+    <!-- <h1>{{ book.name }}</h1>
+    <h3>Yazar: {{ book.author }}</h3>
+    <p>Kategori: {{ book.category }}</p>
+    <p>Puan: {{ book.rating }}</p>
+    <p>Açıklama: {{ book.description }}</p> -->
+  
+    <div class="actions">
+      <button >Favorilere Ekle</button>
+      <button routerLink="/books">Geri Dön</button>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <p class="loading-text">Yükleniyor...</p>
+  </ng-template>
+  
