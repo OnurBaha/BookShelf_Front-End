@@ -1,24 +1,37 @@
 <div class="form-container">
-    <h2>Kitap Ekle / Güncelle</h2>
-    <form >
-      <label for="name">Kitap Adı</label>
-      <input type="text" id="name" name="name"  required />
-  
-      <label for="author">Yazar</label>
-      <input type="text" id="author" name="author" required />
-  
-      <label for="category">Kategori</label>
-      <select id="category" name="category" required>
-        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-      </select>
-  
-      <label for="rating">Puan</label>
-      <input type="number" id="rating" name="rating"  min="1" max="5" />
-  
-      <label for="description">Açıklama</label>
-      <textarea id="description" name="description" ></textarea>
-  
-      <button type="submit">Kaydet</button>
-    </form>
-  </div>
-  
+  <h2>Kitap Ekle / Güncelle</h2>
+  <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+    <label for="name">Kitap Adı</label>
+    <input type="text" id="name" name="name" [(ngModel)]="book.name" required #name="ngModel" />
+    <div *ngIf="name.invalid && name.touched" class="error">Kitap adı gerekli.</div>
+
+    <label for="author">Yazar</label>
+    <input type="text" id="author" name="author" [(ngModel)]="book.author" required #author="ngModel" />
+    <div *ngIf="author.invalid && author.touched" class="error">Yazar gerekli.</div>
+
+    <label for="category">Kategori</label>
+    <select id="category" name="category" [(ngModel)]="book.category" required #category="ngModel">
+      <option value="">Kategori seçin</option>
+      <option>Roman</option>
+      <option>Bilim Kurgu</option>
+      <option>Tarih</option>
+      <option>Felsefe</option>
+      <option>Biyografi</option>
+    </select>
+    <div *ngIf="category.invalid && category.touched" class="error">Kategori seçin.</div>
+
+    <label for="rating">Puan</label>
+    <input type="number" id="rating" name="rating" [(ngModel)]="book.rating" min="1" max="5" required #rating="ngModel" />
+    <div *ngIf="rating.invalid && rating.touched" class="error">Puan gerekli (1-5).</div>
+
+    <label for="description">Açıklama</label>
+    <textarea id="description" name="description" [(ngModel)]="book.description" required #description="ngModel"></textarea>
+    <div *ngIf="description.invalid && description.touched" class="error">Açıklama gerekli.</div>
+
+    <label for="addedDate">Eklenme Tarihi</label>
+    <input type="date" id="addedDate" name="addedDate" [(ngModel)]="book.addedDate" required #addedDate="ngModel" />
+    <div *ngIf="addedDate.invalid && addedDate.touched" class="error">Eklenme tarihi gerekli.</div>
+
+    <button type="submit" [disabled]="bookForm.invalid">Kaydet</button>
+  </form>
+</div>
