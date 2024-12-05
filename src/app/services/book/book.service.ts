@@ -15,8 +15,10 @@ export class BookService {
   addNewBook(obj:Book): Observable<IApiResponse>{
     return this.http.post<IApiResponse>(`${this.apiUrl}Books`, obj)
   }
-  getAllBook(): Observable<IApiResponse>{
-    return this.http.get<IApiResponse>(`${this.apiUrl}GetList?PageIndex=0&PageSize=100`)
+  
+  getAllBook(): Observable<IApiResponse> {
+    return this.http.get<IApiResponse>(`${this.apiUrl}Books/GetList?PageIndex=0&PageSize=100`);
   }
+  
 
 }

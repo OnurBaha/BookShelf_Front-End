@@ -9,10 +9,10 @@ export class CategoryFilterPipe implements PipeTransform {
 
   transform(books: AllBook[], selectedCategory: string): AllBook[] {
     if (!selectedCategory) {
-      return books;  // Eğer kategori seçilmemişse tüm kitapları döndür
+      return books;  
     }
 
-    // Kategorisi seçilenle eşleşen kitapları döndür
+   
     return books.filter(book => book.category === selectedCategory);
   }
 }

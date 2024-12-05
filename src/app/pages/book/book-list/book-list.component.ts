@@ -19,7 +19,7 @@ export class BookListComponent implements OnInit {
   categories: string[] = [];
   searchText: string = '';
   selectedCategory: string = '';
-  sortOption: keyof AllBook = 'rating'; // Türü 'keyof AllBook' olarak değiştirildi
+  sortOption: keyof AllBook = 'rating'; 
 
   constructor(private bookService: BookService) {}
 
@@ -30,18 +30,20 @@ export class BookListComponent implements OnInit {
   loadBooks(): void {
     this.bookService.getAllBook().subscribe({
       next: (response: IApiResponse) => {
-        if (response.result) {
+        if (response && response.result) {
           this.books = response.data;
           this.extractCategories();
         } else {
-          console.error('Kitaplar alınırken hata:', response.message);
+          console.error('Kitaplar alınırken hata:', response?.message || 'Bilinmeyen hata');
         }
       },
       error: (err) => {
-        console.error('Kitapları yüklerken hata:', err);
+        console.error('Kitapları yüklerken hata:', err.message || err);
       }
     });
   }
+  
+  
 
   extractCategories(): void {
     this.categories = [...new Set(this.books.map(book => book.category))];
