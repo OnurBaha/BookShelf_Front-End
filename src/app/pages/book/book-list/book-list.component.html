@@ -1,23 +1,26 @@
-<div class="page-header">
-    <h1>Kitaplar</h1>
-    <button class="add-book-btn" routerLink="/add-book">Yeni Kitap Ekle</button>
+<div class="filters">
+  <input type="text" placeholder="Kitap Ara..." [(ngModel)]="searchText" />
+  <select [(ngModel)]="selectedCategory">
+    <option value="">Tüm Kategoriler</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+
+  <!-- Sorting Options -->
+  <select [(ngModel)]="sortOption">
+    <option value="rating">Puan</option>
+    <option value="name">İsim</option>
+    <option value="author">Yazar</option>
+    <option value="category">Kategori</option>
+  </select>
+</div>
+
+<div class="book-list">
+  <div class="card" 
+       *ngFor="let book of books | categoryFilter: selectedCategory | sort: sortOption:'asc'">
+    <h3>{{ book.name }}</h3>
+    <p>{{ book.author }}</p>
+    <div class="rating">Puan: {{ book.rating }}</div>
+    <button (click)="viewDetails(book.id)">Detaylar</button>
+    <button (click)="toggleFavorite(book)" [class.favorite]="book.isFavorite">☆</button>
   </div>
-  
-  <div class="filters">
-    <input type="text" placeholder="Kitap Ara..."  />
-    <select >
-      <option value="">Tüm Kategoriler</option>
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-    </select>
-  </div>
-  
-  <div class="book-list">
-    <div class="card" *ngFor="let book of books | categoryFilter: selectedCategory | sort: sortOption">
-      <h3>{{ book.name }}</h3>
-      <p>{{ book.author }}</p>
-      <div class="rating">Puan: {{ book.rating }}</div>
-      <button >Detaylar</button>
-      <button  [class.favorite]="book.isFavorite">☆</button>
-    </div>
-  </div>
-  
+</div>

@@ -1,10 +1,21 @@
 export interface IApiResponse {
     message: string,
     result: boolean,
-    data: any
+    data: any; 
 }
 
 export interface Book {
+    name: string;
+    author: string;
+    category: string;
+    rating: number;
+    isRead: boolean;
+    isFavorite: boolean;
+    description: string;
+    addedDate: Date;
+  }
+export interface AllBook {
+    id:string;
     name: string;
     author: string;
     category: string;
