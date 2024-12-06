@@ -1,24 +1,34 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Book, IApiResponse } from '../../models/book.model';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { IApiResponse, AllBook, Book } from '../../models/book.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+  private apiUrl: string = 'https://localhost:7274/api/';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  apiUrl: string = "https://localhost:7274/api/";
-
-  addNewBook(obj:Book): Observable<IApiResponse>{
-    return this.http.post<IApiResponse>(`${this.apiUrl}Books`, obj)
+  addNewBook(obj: Book): Observable<IApiResponse> {
+    return this.http.post<IApiResponse>(`${this.apiUrl}Books`, obj);
   }
-  
-  getAllBook(): Observable<IApiResponse> {
-    return this.http.get<IApiResponse>(`${this.apiUrl}Books/GetList?PageIndex=0&PageSize=100`);
-  }
-  
 
+  getAllBooks(): Observable<IApiResponse> {
+    return this.http.get<IApiResponse>(`${this.apiUrl}Books/GetList?PageIndex=0&PageSize=10`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.error('Kitaplar yüklenirken hata:', error.message || error);
+    return throwError(error);
+  }
 }
+
+
+
+

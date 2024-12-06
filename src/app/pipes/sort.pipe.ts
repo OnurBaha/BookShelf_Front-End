@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AllBook } from '../models/book.model';  // AllBook modelini import edin
+import { AllBook } from '../models/book.model'; 
 
 @Pipe({
   name: 'sort',
   standalone: true
 })
 export class SortPipe implements PipeTransform {
-
   transform(books: AllBook[], property: keyof AllBook, order: 'asc' | 'desc' = 'asc'): AllBook[] {
     if (!Array.isArray(books) || !property) {
       return books;

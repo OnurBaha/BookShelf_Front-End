@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { BookService } from '../../../services/book/book.service';
 import { Book } from '../../../models/book.model';
-import { NgIf } from '@angular/common';
+import { IApiResponse } from '../../../models/book.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-book',
   standalone: true,
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, CommonModule],
   templateUrl: './add-book.component.html',
   styleUrls: ['./add-book.component.css']
 })
@@ -31,12 +32,12 @@ export class AddBookComponent implements OnInit {
   onSubmit(form: NgForm): void {
     if (form.valid) {
       this.bookService.addNewBook(this.book).subscribe({
-        next: (response) => {
-          if (response.result) {
+        next: (response: IApiResponse) => {
+          if (response && response.count > 0) {
             alert('Kitap başarıyla eklendi!');
             form.resetForm();
           } else {
-            alert(`Hata: ${response.message}`);
+            alert('Kitap eklenirken bir hata oluştu.');
           }
         },
         error: (err) => {
@@ -48,4 +49,5 @@ export class AddBookComponent implements OnInit {
       alert('Lütfen tüm alanları doldurun.');
     }
   }
+  
 }
