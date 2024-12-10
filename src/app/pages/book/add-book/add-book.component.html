@@ -1,6 +1,7 @@
 <div class="form-container">
   <h2>Kitap Ekle / Güncelle</h2>
   <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+    <!-- Form Fields -->
     <label for="name">Kitap Adı</label>
     <input type="text" id="name" name="name" [(ngModel)]="book.name" required #name="ngModel" />
     <div *ngIf="name.invalid && name.touched" class="error">Kitap adı gerekli.</div>
@@ -21,8 +22,8 @@
     <div *ngIf="category.invalid && category.touched" class="error">Kategori seçin.</div>
 
     <label for="rating">Puan</label>
-    <input type="number" id="rating" name="rating" [(ngModel)]="book.rating" min="1" max="5" required #rating="ngModel" />
-    <div *ngIf="rating.invalid && rating.touched" class="error">Puan gerekli (1-5).</div>
+    <input type="number" id="rating" name="rating" [(ngModel)]="book.rating" min="1" max="100" required #rating="ngModel" />
+    <div *ngIf="rating.invalid && rating.touched" class="error">Puan gerekli (1-100).</div>
 
     <label for="description">Açıklama</label>
     <textarea id="description" name="description" [(ngModel)]="book.description" required #description="ngModel"></textarea>
@@ -34,4 +35,19 @@
 
     <button type="submit" [disabled]="bookForm.invalid">Kaydet</button>
   </form>
+</div>
+
+<!-- Toast -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div
+    id="toastMessage"
+    class="toast align-items-center text-bg-success border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">{{ toastMessage }}</div>
+    </div>
+  </div>
 </div>

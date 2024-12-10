@@ -12,8 +12,8 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  addNewBook(obj: Book): Observable<IApiResponse> {
-    return this.http.post<IApiResponse>(`${this.apiUrl}Books`, obj);
+  addNewBook(obj: Book): Observable<Book> {
+    return this.http.post<Book>(`${this.apiUrl}Books`, obj);
   }
 
   getAllBooks(): Observable<IApiResponse> {

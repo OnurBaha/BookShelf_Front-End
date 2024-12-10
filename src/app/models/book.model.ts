@@ -17,6 +17,7 @@ export class AllBook {
   category: string;
   rating: number;
   isFavorite: boolean;
+  addedDate: Date;
 
   constructor(
     id: string,
@@ -25,7 +26,8 @@ export class AllBook {
     author: string,
     category: string,
     rating: number,
-    isFavorite: boolean
+    isFavorite: boolean,
+    addedDate: Date
   ) {
     this.id = id;
     this.name = name;
@@ -34,6 +36,7 @@ export class AllBook {
     this.category = category;
     this.rating = rating;
     this.isFavorite = isFavorite;
+    this.addedDate = addedDate;
   }
 }
 
@@ -47,4 +50,3 @@ export interface IApiResponse {
   hasPrevious: boolean;
   hasNext: boolean;
 }
-
