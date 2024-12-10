@@ -1,45 +1,46 @@
 .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .filters {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-  
-  .filters input, .filters select {
-    width: 48%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-  
-  .card {
-    padding: 1rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card h3 {
-    margin: 0;
-  }
-  
-  .card .rating {
-    font-weight: bold;
-  }
-  
-  .card .favorite {
-    color: gold;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filters {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters input,
+.filters select {
+  width: 48%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.book-list {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card .rating {
+  font-weight: bold;
+}
+
+.card .favorite {
+  color: gold;
+}

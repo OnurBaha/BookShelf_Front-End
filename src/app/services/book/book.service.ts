@@ -17,7 +17,7 @@ export class BookService {
   }
 
   getAllBooks(): Observable<IApiResponse> {
-    return this.http.get<IApiResponse>(`${this.apiUrl}Books/GetList?PageIndex=0&PageSize=10`)
+    return this.http.get<IApiResponse>(`${this.apiUrl}Books/GetList?PageIndex=0&PageSize=100`)
       .pipe(
         catchError(this.handleError)
       );

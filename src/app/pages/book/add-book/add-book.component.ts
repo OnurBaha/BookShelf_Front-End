@@ -4,7 +4,7 @@ import { BookService } from '../../../services/book/book.service';
 import { Book } from '../../../models/book.model';
 import { CommonModule } from '@angular/common';
 
-declare var bootstrap: any; // Bootstrap JavaScript API'yi kullanmak için
+declare var bootstrap: any; 
 
 @Component({
   selector: 'app-add-book',

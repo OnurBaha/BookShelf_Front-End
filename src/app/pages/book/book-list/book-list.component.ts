@@ -50,7 +50,6 @@ export class BookListComponent implements OnInit {
 
   viewDetails(bookId: string): void {
     console.log('Kitap Detayları için ID:', bookId);
-    // Implement your view details logic here
   }
 
   toggleFavorite(book: AllBook): void {
