@@ -2,6 +2,7 @@ export interface Book {
   name: string;
   author: string;
   category: string;
+  bookImage:string;
   rating: number;
   isRead: boolean;
   isFavorite: boolean;
@@ -15,8 +16,10 @@ export class AllBook {
   title: string;
   author: string;
   category: string;
+  bookImage:string;
   rating: number;
   isFavorite: boolean;
+  description:string;
   addedDate: Date;
 
   constructor(
@@ -25,8 +28,10 @@ export class AllBook {
     title: string,
     author: string,
     category: string,
+    bookImage:string,
     rating: number,
     isFavorite: boolean,
+    description:string,
     addedDate: Date
   ) {
     this.id = id;
@@ -34,8 +39,10 @@ export class AllBook {
     this.title = title;
     this.author = author;
     this.category = category;
+    this.bookImage = bookImage;
     this.rating = rating;
     this.isFavorite = isFavorite;
+    this.description = description;
     this.addedDate = addedDate;
   }
 }

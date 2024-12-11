@@ -19,6 +19,7 @@ export class AddBookComponent implements OnInit {
     name: '',
     author: '',
     category: '',
+    bookImage: '',
     rating: 0,
     isRead: false,
     isFavorite: false,

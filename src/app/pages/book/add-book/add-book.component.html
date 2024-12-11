@@ -21,6 +21,10 @@
     </select>
     <div *ngIf="category.invalid && category.touched" class="error">Kategori seçin.</div>
 
+    <label for="bookImage">Resim</label>
+    <input type="text" id="bookImage" name="bookImage" [(ngModel)]="book.bookImage" required #bookImage="ngModel" />
+    <div *ngIf="bookImage.invalid && bookImage.touched" class="error">Bir Resim Adresi Gerekli</div>
+
     <label for="rating">Puan</label>
     <input type="number" id="rating" name="rating" [(ngModel)]="book.rating" min="1" max="100" required #rating="ngModel" />
     <div *ngIf="rating.invalid && rating.touched" class="error">Puan gerekli (1-100).</div>
