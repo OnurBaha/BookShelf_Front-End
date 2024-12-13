@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FullCalendarModule } from '@fullcalendar/angular'; 
+import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import trLocale from '@fullcalendar/core/locales/tr';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 
 @Component({
   selector: 'app-reading-plan',
@@ -14,7 +13,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   imports: [CommonModule, FullCalendarModule],
   templateUrl: './reading-plan.component.html',
   styleUrls: ['./reading-plan.component.css'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ReadingPlanComponent {
   readingPlan = [
@@ -30,14 +29,33 @@ export class ReadingPlanComponent {
     end: plan.endDate,
   }));
 
-  handleDateSelect(arg: any) {
-    const title = prompt('Etkinlik başlığını girin:');
-    if (title) {
-      this.calendarEvents = [
-        ...this.calendarEvents,
-        { title, start: arg.startStr, end: arg.endStr }
-      ];
-    }
+  isModalOpen = false;
+  newPlan = {
+    book: { name: '', author: '' },
+    startDate: '',
+    endDate: '',
+  };
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  createPlan() {
+    this.readingPlan.push(this.newPlan);
+    this.calendarEvents = [
+      ...this.calendarEvents,
+      {
+        title: this.newPlan.book.name,
+        start: this.newPlan.startDate,
+        end: this.newPlan.endDate,
+      },
+    ];
+    this.newPlan = { book: { name: '', author: '' }, startDate: '', endDate: '' };
+    this.closeModal();
   }
 
   removePlan(index: number) {

@@ -2,6 +2,8 @@
   <h1>Okuma Planım</h1>
 </div>
 
+<button (click)="openModal()" class="create-plan-button">Okuma Planı Oluştur</button>
+
 <div *ngIf="readingPlan.length > 0; else noPlan">
   <div class="book-list">
     <div class="card" *ngFor="let plan of readingPlan; let i = index">
@@ -29,7 +31,6 @@
       [editable]="true"
       [selectable]="true"
       [events]="calendarEvents"
-      (dateSelect)="handleDateSelect($event)"
     ></full-calendar>
   </div>
 </div>
@@ -37,3 +38,32 @@
 <ng-template #noPlan>
   <p class="no-data">Henüz bir okuma planı oluşturulmamış.</p>
 </ng-template>
+
+<!-- Modal -->
+<div *ngIf="isModalOpen" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Okuma Planı Oluştur</h2>
+    <form (ngSubmit)="createPlan()">
+      <label>
+        Kitap Adı:
+        <input type="text" name="bookName" required />
+      </label>
+      <label>
+        Yazar:
+        <input type="text"  name="author" required />
+      </label>
+      <label>
+        Başlangıç Tarihi:
+        <input type="date"  name="startDate" required />
+      </label>
+      <label>
+        Bitiş Tarihi:
+        <input type="date" name="endDate" required />
+      </label>
+      <div class="modal-actions">
+        <button type="submit">Onayla</button>
+        <button type="button" (click)="closeModal()">İptal</button>
+      </div>
+    </form>
+  </div>
+</div>
